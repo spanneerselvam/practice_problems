@@ -12,16 +12,30 @@ return [0, 1].
 '''
 
 class Solution:
-    def twoSum(self, nums, target):
+    #Time complexity O(n^2)
+    #Space Complexity O(n1)
+    def twoSumBruteForce(self, nums, target):
         for i in range(0, len(nums)):
-            for j in range(1, len(nums)-1):
+            for j in range(0, len(nums)):
                 if i != j:
                     sum_value = nums[i] + nums[j]
                     if sum_value == target:
-                        l = list()
-                        l.append(i)
-                        l.append(j)
-                        return l
-                    
+                        return(i,j)
+
+    def twoSum(self, nums, target):
+        d = dict()
+        for i in range(0, len(nums)):
+            a = nums[i]
+            value = target-a
+            if a in d:
+                for j in range(0, len(nums)):
+                    if nums[j] == value:
+                        return(min(i,j), max(i,j))
+            else:
+                d[value] = a
+                
 a = Solution()
-print(a.twoSum([2, 7, 11, 15], target = 9))
+l = [2, 4, 6]
+target = 10
+print(a.twoSumBruteForce(l, target))
+print(a.twoSum(l, target))
